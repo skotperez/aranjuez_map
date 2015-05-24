@@ -1,3 +1,35 @@
+<?php
+if ( array_key_exists('mode',$_GET) ) {
+	if ( function_exists('filter_var') ) { $mode = filter_var($_GET['mode'],FILTER_SANITIZE_FULL_SPECIAL_CHARS); }
+	else { $mode = htmlspecialchars($_GET['mode'], ENT_QUOTES); }
+}
+else { $mode = "false"; }
+if ( $mode == 'edit' ) {
+	$allowEdit = "true";
+	$modal_edit_mode = '
+<div class="modal" id="edit_mode" tabindex="-1" role="dialog" aria-labelledby="modalEditMode" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<p>Para comenzar a editar el mapa, pincha en el icono del lapiz de la derecha, tras cerrar este mensaje.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Empezar a editar</button>
+			</div>
+		</div>
+	</div>
+</div>
+	';
+	$navbar_right = '<ul class="nav navbar-nav navbar-right"><li><a href="/">Salir del modo edición</a></li></ul>';
+}
+else {
+	$allowEdit = "false";
+	$navbar_right = '<ul class="nav navbar-nav navbar-right"><li><a href="?mode=edit"><span class="glyphicon glyphicon-pencil"></span> Activar el modo edición</a></li></ul>';
+}
+$umap_options = "scaleControl=false&miniMap=true&scrollWheelZoom=true&zoomControl=true&allowEdit=".$allowEdit."&moreControl=false&datalayersControl=true&onLoadPanel=undefined&captionBar=false";
+?>
+
 <!DOCTYPE html>
 <html lang="es-ES">
 
@@ -39,10 +71,12 @@
 			<li><a href="#proyecto" data-toggle="modal" data-target="#proyecto">El proyecto</a></li>
 			<li><a href="#mapa" data-toggle="modal" data-target="#mapa">La cartografía</a></li>
 		</ul>
+		<?php echo $navbar_right ?>
 	</div><!-- #pre-collapse -->
 </div>
 </nav>
 
+<?php echo $modal_edit_mode; ?>
 <!-- Modal mapa -->
 <div class="modal fade" id="mapa" tabindex="-1" role="dialog" aria-labelledby="modalMapaTitle" aria-hidden="true">
 	<div class="modal-dialog">
@@ -62,7 +96,6 @@
 				</ul>
 			</div>
 			<div class="modal-footer">
-				<a href="edit.html" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Editar el mapa</a>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
 			</div>
 		</div>
@@ -121,11 +154,18 @@
 	</div>
 </div>
 
-<iframe id="map" width="100%" height="100%" frameBorder="0" src="http://umap.openstreetmap.fr/en/map/aranjuez-testing_34167?scaleControl=false&miniMap=false&scrollWheelZoom=true&zoomControl=true&allowEdit=false&moreControl=false&datalayersControl=true&onLoadPanel=undefined&captionBar=false"></iframe>
+<iframe id="map" width="50%" height="100%" frameBorder="0" src="http://umap.openstreetmap.fr/en/map/aranjuez-testing_34167?<?php echo $umap_options ?>"></iframe>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="bootstrap/js/bootstrap.min.js"></script>
+<?php if ( $mode == 'edit' ) { ?>
+	<script type="text/javascript">
+	    $(window).load(function(){
+	        $('#edit_mode').modal('show');
+	    });
+	</script>
+<?php } ?>
 
 </body></html>
