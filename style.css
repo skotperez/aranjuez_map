@@ -1,0 +1,23 @@
+#map {
+	overflow:hidden;
+	overflow-x:hidden;
+	overflow-y:hidden;
+	height:100%;
+	width:100%;
+	position:absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	z-index:-1;
+	padding-top:50px;
+}
+#main-tit {
+	margin: 0;
+	font-size: 20px;
+	line-height: 1em;
+}
+/*dialogs */
+.list-vair li {
+	margin: 5px 0;
+}
