@@ -47,6 +47,30 @@ $metatit = "Aranjuez, un oasis en la vega del Tajo";
 $metadesc = "Cartografía colaborativa de recursos territoriales en el entorno de Aranjuez";
 $metaperma = "http://aranjuez.surcosurbanos.es";
 $metaimg = "http://aranjuez.surcosurbanos.es/images/screenshot.png";
+
+// sharing buttons
+if ( function_exists('filter_var') ) {
+	$share_perma = filter_var($metaperma,FILTER_SANITIZE_ENCODED);
+	$share_img = filter_var($metaimg,FILTER_SANITIZE_ENCODED);
+	$share_tit = filter_var($metatit,FILTER_SANITIZE_ENCODED);
+	$share_desc = filter_var($metadesc,FILTER_SANITIZE_ENCODED);
+
+} else {
+	$share_perma = urlencode($metaperma);
+	$share_img = urlencode($metaimg);
+	$share_tit = urlencode($metatit);
+	$share_desc = urlencode($metadesc);
+
+}
+$share_buttons = array(
+	array("facebook","Facebook","http://facebook.com/sharer.php?u=".$share_perma),
+	array("twitter","Twitter","http://twitter.com/home?status=".$share_tit."%20".$share_perma),
+	array("googleplus","Google Plus","https://plus.google.com/share?url=".$share_perma),
+	array("linkedin","Linkedin","https://www.linkedin.com/shareArticle?url=".$share_perma."&mini=true&title=".$share_tit."&summary=".$share_desc."&source=".$share_tit),
+	array("tumblr","Tumblr","http://www.tumblr.com/share/link?url=".$share_perma."&name=".$share_tit."&description=".$share_desc),
+	array("pinterest","Pinterest","http://pinterest.com/pin/create/button/?url=".$share_perma."&media=".$share_img."&name=".$share_tit."&description=".$share_desc),
+);
+
 ?>
 <!-- generic meta -->
 <meta content="Asociación Surcos Urbanos" name="author" />
@@ -90,6 +114,13 @@ $metaimg = "http://aranjuez.surcosurbanos.es/images/screenshot.png";
 		<ul class="nav navbar-nav">
 			<li><a href="#proyecto" data-toggle="modal" data-target="#proyecto">El proyecto</a></li>
 			<li><a href="#mapa" data-toggle="modal" data-target="#mapa">La cartografía</a></li>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Compartir</a>
+				<ul class="dropdown-menu" role="menu">
+					<?php foreach ( $share_buttons as $sb ) {
+						echo "<li class='share-button share-".$sb[0]."'><a target='_blank' href='".$sb[2]."'>".$sb[1]."</a></li>";
+					} ?>
+				</ul>
+			</li>
 		</ul>
 		<?php echo $navbar_right ?>
 	</div><!-- #pre-collapse -->

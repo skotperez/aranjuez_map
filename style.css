@@ -17,7 +17,35 @@
 	font-size: 20px;
 	line-height: 1em;
 }
-/*dialogs */
+/* dialogs */
 .list-vair li {
 	margin: 5px 0;
+}
+
+/* sharing buttons */
+.share-button a {
+	background-image: url(images/share.icons.png);
+	background-repeat: no-repeat;
+	height: 18px;
+	line-height: 18px !important;
+	padding: 0 25px 0 !important;
+	margin: 5px 10px;
+}
+.share-facebook a {
+	background-position: 0 0;
+}
+.share-twitter a {
+	background-position: 0 -20px;
+}
+.share-googleplus a {
+	background-position: 0 -40px;
+}
+.share-linkedin a {
+	background-position: 0 -60px;
+}
+.share-tumblr a {
+	background-position: 0 -80px;
+}
+.share-pinterest a {
+	background-position: 0 -100px;
 }
