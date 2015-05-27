@@ -175,13 +175,13 @@ $share_buttons = array(
 							<h4>Exposición "Aranjuez, un oasis en la vega del Tajo. Los servicios de los ecosistemas"</h4>
 							<dl>
 								<dt>Lugar</dt><dd>Centro Cultural Isabel de Farnesio</dd>
-								<dt>Fechas</dt><dd>por confirmar</dd>
-								<dt></dt><dd>Más información</dd>
+								<dt>Fechas</dt><dd>jueves 21 a sábado 30 de junio de 2015</dd>
 							</dl>
 							<h4>Itinerarios exploradores en bicicleta "Rastreando los servicios de los ecosistemas"</h4>
 							<dl>
-								<dt>Fechas</dt><dd>23 y 24 de mayo de 2015</dd>
-								<dt></dt><dd>Más información</dd>
+								<dt>Lugar</dt><dd>Ruta en bici por las huertas (1,5 horas). Punto de salida y llegada en la entrada del Jardín del Príncipe en la calle la Reina.</dd>
+								<dt>Fechas</dt><dd>viernes 12 de junio de 2015 a las 19:00 horas y domingo 14 de junio de 2015 a las 11:00 horas</dd>
+								<dt>Inscripción gratuita</dt><dd>oct@observatorioculturayterritorio.org</dd>
 							</dl>
 						</div>
 						<div role="tabpanel" class="tab-pane" id="organizaciones">
