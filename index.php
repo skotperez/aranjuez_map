@@ -217,6 +217,11 @@ $share_buttons = array(
 	        $('#edit_mode').modal('show');
 	    });
 	</script>
-<?php } ?>
+<?php }
+
+// include stats tracking code
+include("stats.php");
+?>
+
 
 </body></html>
