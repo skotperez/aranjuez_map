@@ -108,13 +108,13 @@ $share_buttons = array(
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="/"><h1 id="main-tit">Aranjuez, un oasis en la vega del Tajo</h1></a>
+		<a class="navbar-brand" href="/"><h1 id="main-tit">Aranjuez, oasis en la vega del Tajo</h1> Cartografía abierta y colaborativa</a>
 	</div>
 	<div class="collapse navbar-collapse" id="pre-collapse">
 		<ul class="nav navbar-nav">
-			<li><a href="#proyecto" data-toggle="modal" data-target="#proyecto">El proyecto</a></li>
-			<li><a href="#mapa" data-toggle="modal" data-target="#mapa">La cartografía</a></li>
-			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Compartir</a>
+			<li><a href="#proyecto" data-toggle="modal" data-target="#proyecto">Sobre el proyecto</a></li>
+			<li><a href="#mapa" data-toggle="modal" data-target="#mapa">Colabora en la cartografía</a></li>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Comparte el mapa</a>
 				<ul class="dropdown-menu" role="menu">
 					<?php foreach ( $share_buttons as $sb ) {
 						echo "<li class='share-button share-".$sb[0]."'><a target='_blank' href='".$sb[2]."'>".$sb[1]."</a></li>";
@@ -137,14 +137,29 @@ $share_buttons = array(
 				<h2 class="modal-title" id="ModalMapaTitle">Cartografía colaborativa</h2>
 			</div>
 			<div class="modal-body">
-				<p>En este mapa colaborativo puedes incluir información sobre las áreas y elementos del entorno agrario de Aranjuez, localizándolos y añadiendo una pequeña descripción y una imagen.</p>
+				<p>En este mapa colaborativo <strong>puedes incluir información sobre las áreas y elementos del entorno agrario de Aranjuez</strong>, localizándolos y añadiendo una pequeña descripción y una imagen.</p>
 				<p>Hay cuatro categorías diferentes:</p>
-				<ul>
-					<li>SOPORTE. Aquí se incluirían los espacios importantes para la biodiversidad.</li>
-					<li>REGULACIÓN. Espacios importantes desde el punto de vista de los ciclos naturales. Que contribuyen a la regulación del clima, de la temperatura, al ciclo hidrológico...</li>
-					<li>ABASTECIMIENTO. Son los que aportan alimentos, agua para el consumo, y otro tipo de materiales...</li>
-					<li>CULTURA. Todos los espacios y construcciones relacionados con el arte y la cultura, las tradiciones, el ocio, la observación de la naturaleza, el deporte, el aprendizaje...</li>
+				<ul class="media-list">
+				<?php foreach (
+					array(
+					array("Soporte","soporte","Aquí se incluirían los espacios importantes para la biodiversidad."),
+					array("Regulación","regulacion","Espacios importantes desde el punto de vista de los ciclos naturales. Que contribuyen a la regulación del clima, de la temperatura, al ciclo hidrológico..."),
+					array("Abastecimiento","abastecimiento","Son los que aportan alimentos, agua para el consumo, y otro tipo de materiales..."),
+					array("Cultura","culturales","Todos los espacios y construcciones relacionados con el arte y la cultura, las tradiciones, el ocio, la observación de la naturaleza, el deporte, el aprendizaje..."),
+				) as $c ) { ?>
+				<li class="media">
+					<div class="media-left">
+						<img class="media-object" src="images/marker-<?php echo $c[1] ?>.png" alt="Icono de la capa <?php echo $c[0] ?>">
+					</div>
+					<div class="media-body">
+						<h4 class="media-heading"><?php echo $c[0] ?></h4>
+						<?php echo $c[2] ?>
+					</div>
+				</li>
+				<?php } ?>
 				</ul>
+				<p>Existe también la opción de dibujar recorridos concretos e incluso áreas de actividad.</p>
+				<p><a class="btn btn-default btn-block" href="?mode=edit">Anímate a editar el mapa</a></p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
@@ -162,7 +177,7 @@ $share_buttons = array(
 			</div>
 			<div class="modal-body">
 				<p><strong>Descubriendo los servicios de los ecosistemas del entorno urbano</strong></p>
-				<p>Durante el mes de mayo de 2015, la Universidad Politécnica de Madrid, junto a las asociaciones Surcos Urbanos y el Observatorio para una Cultura del Territorio, desarrollan en Aranjuez un conjunto de actividades que pretenden acercar a la ciudadanía los espacios agrarios del entorno urbano, para comprender todos los servicios que estos ecosistemas prestan a la ciudad y, así entender la necesidad de su preservación y dinamización. ¡No te pierdas ninguna de las actividades!</p>
+				<p>Durante el mes de mayo de 2015, en el marco del proyecto financiado por la convocatoria de ayudas para el fomento de la cultura cientifica, tecnológica y de la innovación 2015 de la FECYT,la Universidad Politécnica de Madrid, junto a las asociaciones Surcos Urbanos y el Observatorio para una Cultura del Territorio, desarrollan en Aranjuez un conjunto de actividades que pretenden acercar a la ciudadanía los espacios agrarios del entorno urbano, para comprender todos los servicios que estos ecosistemas prestan a la ciudad y, así entender la necesidad de su preservación y dinamización. ¡No te pierdas ninguna de las actividades!</p>
 				<div role="tabpanel">
 					<!-- Nav tabs -->
 					<ul class="nav nav-tabs" role="tablist">
@@ -205,7 +220,7 @@ $share_buttons = array(
 	</div>
 </div>
 
-<iframe id="map" width="50%" height="100%" frameBorder="0" src="http://umap.openstreetmap.fr/en/map/aranjuez-testing_34167?<?php echo $umap_options ?>"></iframe>
+<iframe id="umap" width="50%" height="100%" frameBorder="0" src="http://umap.openstreetmap.fr/en/map/aranjuez-testing_34167?<?php echo $umap_options ?>"></iframe>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -222,6 +237,5 @@ $share_buttons = array(
 // include stats tracking code
 include("stats.php");
 ?>
-
 
 </body></html>
